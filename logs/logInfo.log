@@ -1,0 +1,143 @@
+[2024-04-26 04:55:20.129 PM] error: TypeError: Cannot read properties of undefined (reading 'activate_link')
+[2024-04-26 04:59:07.542 PM] error: ReferenceError: err is not defined
+[2024-04-27 02:44:52.271 PM] error: ReferenceError: ReadableStream is not defined
+[2024-04-27 02:44:53.064 PM] error: ReferenceError: ReadableStream is not defined
+[2024-04-27 02:45:40.639 PM] error: ReferenceError: ReadableStream is not defined
+[2024-04-27 02:45:53.294 PM] error: ReferenceError: ReadableStream is not defined
+[2024-04-27 02:50:30.867 PM] error: ReferenceError: ReadableStream is not defined
+[2024-04-27 02:50:43.708 PM] error: ReferenceError: ReadableStream is not defined
+[2024-04-27 03:17:35.349 PM] error: ReferenceError: ReadableStream is not defined
+[2024-04-27 03:36:39.664 PM] error: ReferenceError: countgarages is not defined
+[2024-04-27 03:37:02.280 PM] error: ReferenceError: countgarages is not defined
+[2024-04-27 05:41:30.082 PM] error: [object Object]
+[2024-04-27 05:42:00.289 PM] error: [object Object]
+[2024-04-27 05:42:07.261 PM] error: [object Object]
+[2024-04-29 09:17:34.945 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 09:24:46.761 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 09:49:36.271 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 09:58:35.459 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 09:58:49.398 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 09:58:51.337 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 09:59:58.191 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:00:19.783 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:00:57.072 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:01:23.270 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:01:51.734 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:02:24.122 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:03:02.686 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:03:47.994 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:04:01.144 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:04:10.458 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:04:38.360 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:04:52.489 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:05:47.080 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:21:53.693 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:22:20.403 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:22:48.040 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:23:10.270 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:23:52.686 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:24:44.631 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:24:51.720 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:25:03.187 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:25:38.096 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:25:59.075 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:26:51.214 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:28:25.352 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:28:42.422 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:30:16.105 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:30:32.739 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:30:57.216 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:32:16.406 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:32:55.229 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:33:41.043 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:33:59.527 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:34:11.913 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:35:47.065 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:36:06.742 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:36:21.786 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 10:36:41.980 AM] error: ReferenceError: ReadableStream is not defined
+[2024-04-29 02:46:52.759 PM] error: ReferenceError: customerId is not defined
+[2024-04-29 02:47:41.778 PM] error: ReferenceError: customerId is not defined
+[2024-04-29 02:47:47.373 PM] error: ReferenceError: customerId is not defined
+[2024-04-29 04:55:34.491 PM] error: ReferenceError: customerId is not defined
+[2024-04-29 05:09:58.850 PM] error: ReferenceError: customerId is not defined
+[2024-04-29 05:11:45.904 PM] error: ReferenceError: customerId is not defined
+[2024-04-29 05:12:26.922 PM] error: ReferenceError: customerId is not defined
+[2024-04-29 05:13:07.808 PM] error: ReferenceError: customerId is not defined
+[2024-04-29 05:13:55.255 PM] error: ReferenceError: customerId is not defined
+[2024-04-29 05:15:07.850 PM] error: ReferenceError: customerId is not defined
+[2024-04-29 05:15:48.488 PM] error: ReferenceError: customerId is not defined
+[2024-04-29 05:16:33.986 PM] error: ReferenceError: appointmentResult is not defined
+[2024-05-02 09:21:38.036 AM] error: TypeError: appointments.forEach is not a function
+[2024-05-02 09:22:09.645 AM] error: TypeError: appointments.forEach is not a function
+[2024-05-02 09:25:55.398 AM] error: [object Object]
+[2024-05-02 09:25:56.530 AM] error: [object Object]
+[2024-05-02 09:25:57.178 AM] error: [object Object]
+[2024-05-02 09:25:57.936 AM] error: [object Object]
+[2024-05-02 09:25:58.233 AM] error: [object Object]
+[2024-05-02 09:25:59.913 AM] error: [object Object]
+[2024-05-02 09:26:00.943 AM] error: [object Object]
+[2024-05-02 09:26:02.253 AM] error: [object Object]
+[2024-05-02 09:26:04.631 AM] error: [object Object]
+[2024-05-02 09:26:35.984 AM] error: [object Object]
+[2024-05-02 10:13:45.419 AM] error: [object Object]
+[2024-05-02 10:13:49.994 AM] error: [object Object]
+[2024-05-02 10:22:28.165 AM] error: TypeError: appointments.forEach is not a function
+[2024-05-02 10:23:11.503 AM] error: TypeError: appointments.forEach is not a function
+[2024-05-02 10:23:32.948 AM] error: TypeError: appointments.forEach is not a function
+[2024-05-02 10:24:23.284 AM] error: TypeError: appointments.forEach is not a function
+[2024-05-02 10:24:24.475 AM] error: TypeError: appointments.forEach is not a function
+[2024-05-02 10:24:38.948 AM] error: TypeError: appointments.forEach is not a function
+[2024-05-02 10:32:44.354 AM] error: TypeError: Cannot read properties of undefined (reading 'garage_id')
+[2024-05-02 10:36:25.710 AM] error: TypeError: Cannot read properties of undefined (reading 'garage_id')
+[2024-05-02 10:36:33.466 AM] error: TypeError: Cannot read properties of undefined (reading 'garage_id')
+[2024-05-02 10:39:11.345 AM] error: TypeError: Cannot read properties of undefined (reading 'garage_id')
+[2024-05-02 10:39:24.750 AM] error: TypeError: Cannot read properties of undefined (reading 'garage_id')
+[2024-05-02 10:39:26.325 AM] error: TypeError: Cannot read properties of undefined (reading 'garage_id')
+[2024-05-02 10:41:26.448 AM] error: TypeError: Cannot read properties of undefined (reading 'garage_id')
+[2024-05-02 10:41:28.508 AM] error: TypeError: Cannot read properties of undefined (reading 'garage_id')
+[2024-05-02 10:41:29.620 AM] error: TypeError: Cannot read properties of undefined (reading 'garage_id')
+[2024-05-02 10:41:31.076 AM] error: TypeError: Cannot read properties of undefined (reading 'garage_id')
+[2024-05-02 10:41:35.057 AM] error: TypeError: Cannot read properties of undefined (reading 'garage_id')
+[2024-05-02 10:42:43.548 AM] error: TypeError: Cannot read properties of undefined (reading 'garage_id')
+[2024-05-02 10:44:53.548 AM] error: TypeError: Cannot read properties of undefined (reading 'garage_id')
+[2024-05-02 10:54:26.245 AM] error: TypeError: Cannot read properties of undefined (reading 'garage_id')
+[2024-05-02 10:54:49.027 AM] error: TypeError: Cannot read properties of undefined (reading 'garage_id')
+[2024-05-02 11:09:49.553 AM] error: TypeError: Cannot read properties of undefined (reading 'garage_id')
+[2024-05-02 11:09:54.055 AM] error: TypeError: Cannot read properties of undefined (reading 'garage_id')
+[2024-05-02 11:10:41.156 AM] error: TypeError: Cannot read properties of undefined (reading 'garage_id')
+[2024-05-02 11:10:51.551 AM] error: TypeError: Cannot read properties of undefined (reading 'garage_id')
+[2024-05-02 11:10:57.549 AM] error: TypeError: Cannot read properties of undefined (reading 'garage_id')
+[2024-05-02 11:19:16.656 AM] error: TypeError: Cannot read properties of undefined (reading 'garage_id')
+[2024-05-03 09:17:01.899 AM] error: TypeError: Cannot read properties of undefined (reading 'garage_id')
+[2024-05-03 09:25:51.995 AM] error: TypeError: Cannot read properties of undefined (reading 'garage_id')
+[2024-05-03 04:06:43.551 PM] error: TypeError: Cannot read properties of undefined (reading 'forEach')
+[2024-05-03 04:59:40.254 PM] error: TypeError: Cannot read properties of undefined (reading 'slice')
+[2024-05-03 04:59:47.516 PM] error: TypeError: Cannot read properties of undefined (reading 'slice')
+[2024-05-03 04:59:50.415 PM] error: TypeError: Cannot read properties of undefined (reading 'slice')
+[2024-05-08 12:39:53.582 PM] error: ReferenceError: logger is not defined
+[2024-05-08 12:39:53.838 PM] error: ReferenceError: logger is not defined
+[2024-05-08 12:39:57.746 PM] error: ReferenceError: logger is not defined
+[2024-05-08 12:40:02.264 PM] error: ReferenceError: logger is not defined
+[2024-05-08 12:40:06.775 PM] error: ReferenceError: logger is not defined
+[2024-05-08 12:40:08.749 PM] error: ReferenceError: logger is not defined
+[2024-05-08 12:40:10.236 PM] error: ReferenceError: logger is not defined
+[2024-05-08 12:41:46.170 PM] error: ReferenceError: logger is not defined
+[2024-05-08 12:41:49.067 PM] error: ReferenceError: logger is not defined
+[2024-05-08 12:41:50.910 PM] error: ReferenceError: logger is not defined
+[2024-05-08 12:41:52.840 PM] error: ReferenceError: logger is not defined
+[2024-05-08 12:41:54.230 PM] error: ReferenceError: logger is not defined
+[2024-05-08 12:41:55.747 PM] error: ReferenceError: logger is not defined
+[2024-05-08 12:42:33.458 PM] error: ReferenceError: logger is not defined
+[2024-05-08 12:43:02.421 PM] error: ReferenceError: logger is not defined
+[2024-05-08 12:43:28.397 PM] error: ReferenceError: logger is not defined
+[2024-05-08 12:43:29.660 PM] error: ReferenceError: logger is not defined
+[2024-05-08 12:44:15.863 PM] error: ReferenceError: logger is not defined
+[2024-05-27 10:28:50.305 AM] error: TypeError: Cannot convert object to primitive value
+[2024-05-27 10:29:32.111 AM] error: TypeError: Cannot convert object to primitive value
+[2024-05-27 10:30:44.650 AM] error: TypeError: Cannot convert object to primitive value
+[2024-05-27 10:31:43.866 AM] error: TypeError: Cannot convert object to primitive value
+[2024-05-27 10:32:00.504 AM] error: TypeError: Cannot convert object to primitive value
+[2024-05-27 10:33:37.461 AM] error: TypeError: Cannot convert object to primitive value
+[2024-05-27 10:35:25.323 AM] error: TypeError: Cannot convert object to primitive value
+[2024-05-27 10:42:45.329 AM] error: TypeError: Cannot convert object to primitive value

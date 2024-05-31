@@ -1,0 +1,259 @@
+<div class="w-full min-h-full rounded-md mt-4">
+  <div class="w-full h-full" id="slot-display">
+    <div class="flex justify-between items-center my-3">
+      <select
+        id="garagesDropdown"
+        class="bg-dark border text-gray-900 text-sm text-white rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-52"
+        onchange="populateData()"
+      >
+        <option value="">ALL</option>
+      </select>
+      <div>
+        <input
+          type="button"
+          class="add-slot"
+          onclick="handleSlots(1)"
+          value="Add Slot"
+        />
+      </div>
+    </div>
+
+    <div class="container-slot" id="slot-container">
+      <div class="content">
+        <div class="title">
+          <div class="title-value">Slot List</div>
+        </div>
+        <div class="serachbar-div">
+          <!-- <div class="flex w-full justify-end items-center">
+            <label for="garagesDropdown" class="font-family">Choose a Garage : </label>
+            <select name="garages" id="garagesDropdown" class="font-family dropdown-garage px-4 py-1 ml-4"
+              onchange="populateData()">
+              <option value="">All</option>
+            </select>
+          </div> -->
+        </div>
+        <div class="table">
+          <table id="table">
+            <tr class="table-head font-family">
+              <th>Sr. No</th>
+              <th>Garage Name</th>
+              <th>Date</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </table>
+        </div>
+        <div class="pagination font-family">
+          <div class="font-family pagination-text"></div>
+          <div class="page-buttons button-group-pagination">
+            <input
+              class="font-family buttons"
+              type="button"
+              value="Prev"
+              id="prev"
+            />
+            <div class="current font-family" id="pid">1</div>
+            <input
+              class="font-family buttons"
+              type="button"
+              value="Next"
+              id="next"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full h-full hidden" id="addSlot-display">
+    <div class="grid-slot" style="display: none">
+      <div class="grid-slot-container">
+        <div class="container-heading">
+          <h3>New Slot</h3>
+          <h4>Slot Information</h4>
+          <hr />
+        </div>
+
+        <div class="wrapper">
+          <div class="row">
+            <div class="col">
+              <div class="form-handler">
+                <div class="form-input-container">
+                  <div class="form-label">
+                    <label for="date">Date</label>
+                  </div>
+                  <div class="form-input">
+                    <input type="text" placeholder="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-handler">
+                <div class="form-input-container">
+                  <div class="form-label">
+                    <label for="date">Start time</label>
+                  </div>
+                  <div class="form-input">
+                    <input type="text" placeholder="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-handler">
+                <div class="form-input-container">
+                  <div class="form-label">
+                    <label for="date">End time</label>
+                  </div>
+                  <div class="form-input">
+                    <input type="text" placeholder="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-handler">
+                <div class="form-input-container">
+                  <div class="form-label">
+                    <label for="date">Status</label>
+                  </div>
+                  <div class="form-input">
+                    <input type="text" placeholder="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col"></div>
+            <div class="col">
+              <div class="form-handler">
+                <div class="form-button">
+                  <input type="submit" value="+ Add" onclick="handleSlots(0)" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-between items-center my-3">
+      <div>
+        <select
+          id="garage-select"
+          class="bg-dark border text-gray-900 text-sm text-white rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-52"
+          onchange="populateData()"
+        >
+          <option value="">ALL</option>
+        </select>
+      </div>
+      <div>
+        <input
+          type="button"
+          value="Back"
+          class="add-slot"
+          onclick="handleSlots(0)"
+        />
+      </div>
+    </div>
+
+    <div class="w-full h-full flex bg-white rounded-md" id="simpleCalendar">
+      <div class="w-1/2 p-4">
+        <header class="calendar-header flex justify-between items-center px-12">
+          <p class="calendar-current-date" id="month"></p>
+          <div class="calendar-navigation h-full">
+            <span
+              id="calendar-prev"
+              class="material-symbols-rounded bg-dark flex justify-center items-center"
+            >
+              <img src="/icons/left.svg" alt="&lt;" />
+            </span>
+            <span
+              id="calendar-next"
+              class="material-symbols-rounded bg-dark flex justify-center items-center"
+            >
+              <img src="/icons/right.svg" alt="&gt;" />
+            </span>
+          </div>
+        </header>
+
+        <div class="calendar-body">
+          <ul class="calendar-weekdays">
+            <li>Sun</li>
+            <li>Mon</li>
+            <li>Tue</li>
+            <li>Wed</li>
+            <li>Thu</li>
+            <li>Fri</li>
+            <li>Sat</li>
+          </ul>
+          <ul class="calendar-dates"></ul>
+        </div>
+      </div>
+      <div class="w-1/2 h-full pt-4" id="slot-listing">
+        <div class="h-[5%]">
+          <h3 class="text-dark font-bold text-left">Generate Slots</h3>
+          <hr />
+        </div>
+        <div class="h-[95%] flex">
+          <div
+            class="w-[95%] h-max overflow-y-auto flex flex-wrap -ml-2 pr-4"
+            id="slots-list"
+          ></div>
+          <div class="w-[3%] h-max flex rotate-90 justify-start items-end">
+            <div class="flex">
+              <div
+                id="btn-half"
+                class="hours cursor-pointer rounded-md w-max mx-2 p-2 px-4 h-full text-white bg-dark opacity-50"
+                onclick="displaySlots(0.5)"
+              >
+                1/2 Hours
+              </div>
+              <div
+                id="btn-full"
+                class="hours cursor-pointer rounded-md w-max mx-2 p-2 px-4 h-full text-white bg-dark opacity-100"
+                onclick="displaySlots(1)"
+              >
+                1 Hours
+              </div>
+              <div
+                id="btn-double"
+                class="hours cursor-pointer rounded-md w-max mx-2 p-2 px-4 h-full text-white bg-dark opacity-50"
+                onclick="displaySlots(2)"
+              >
+                2 Hours
+              </div>
+              <div
+                id="btn-0"
+                class="cursor-pointer rounded-md w-max mx-2 p-2 px-4 h-full text-white bg-dark opacity-50"
+                onclick="displaySlots(0)"
+              >
+                custom
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<link rel="stylesheet" href="/styles/simpleCalendar.css" />
+<script src="/scripts/simpleCalendar.js"></script>
+<script>
+  const handleSlots = (id) => {
+    let divs = ["slot-display", "addSlot-display"];
+    if (id == 0) populateData();
+    document.getElementById(divs[1]).classList.remove("hidden");
+    document.getElementById(divs[id]).classList.remove("hidden");
+    document.getElementById(divs[(id + 1) % 2]).classList.add("hidden");
+    if (id == 1) {
+      document.getElementById(divs[1]).classList.add("block");
+      displaySlots();
+    }
+  };
+</script>
+
+<script src="/scripts/garageList.js"></script>

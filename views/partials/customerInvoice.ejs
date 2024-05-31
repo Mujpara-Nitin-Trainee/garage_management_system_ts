@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invoice</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              dark: "#152533",
+              lightBlue: "#D9D9D9",
+              blue: "#355364",
+              white: "#FFFFFF",
+              light: "#D9D9D9",
+              lightbg: "#d7e0e7",
+              lightorange: "burlywood",
+              card1bg: "rgba(255, 225, 200, 0.5)",
+              card1text: "#e96a00",
+              card2bg: "rgba(225, 246, 247, 0.5)",
+              card2text: "#34cdd0",
+              card3bg: "rgba(252, 226, 225, 0.5)",
+              card3text: "#df5e5e",
+              card4bg: "rgba(237, 231, 251, 0.5)",
+              card4text: "#9a78ea",
+              red: "#ff0000",
+              green: "#00FF00",
+              black: "#000000",
+            },
+          },
+        },
+      };
+      </script>
+    <style>
+      .invoice-table tr,
+      td,
+      th {
+        margin: 0 auto;
+        border: 1px solid black;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body class="bg-lightbg">
+    <%data=JSON.parse(data)%>
+    <%let total= 0%>
+    <div class="max-w-[1480px] mx-auto" id="invoice-container">
+      <div class="mt-5 px-4 text-center">
+        <h2 class="text-3xl font-bold">INVOICE</h2>
+        <div class="h-[1px] bg-dark max-w-[600px] mx-auto mt-5"></div>
+        <h2 class="text-2xl mt-[20px]" id="invoice_garage"><%=data[0].garage_name%></h2>
+      </div>
+      <div class="flex flex-wrap justify-between mt-10">
+        <div style="width: calc(100% / 2)">
+          <div class="flex">
+            <p class="font-bold mr-8 text-lg ml-32 text-justify">Invoice #</p>
+            <p class="mr-8 ml-[35px] text-lg text-right" id="invoice_id">IN - <%=data[0].appointment_id%></p>
+          </div>
+          <div class="flex">
+            <p class="font-bold mr-8 text-lg ml-32 text-justify">Invoice Date</p>
+            <p class="text-lg text-right" id="invoice_date"><%=data[0].start_time.split(" ")[0]%></p>
+          </div>
+        </div>
+        <div class="text-right" style="width: calc(100% / 2)">
+          <h2 class="font-bold text-lg mr-32">Bill to</h2>
+          <p class="mt-2 mr-32" id="invoice_name"><%=data[0].customer_name%></p>
+          <p class="mr-32" id="invoice_area"><%=data[0].area%></p>
+          <p class="mr-32" id="invoice_city"><%=data[0].city_name%>, <%=data[0].pincode%></p>
+        </div>
+      </div>
+      <div class="mt-14">
+        <table class="mx-auto text-center w-[510px] mb-5 invoice-table">
+          <thead>
+            <tr class="mx-auto text-center">
+              <td class="mx-auto text-center font-bold">Sr.</td>
+              <td class="mx-auto text-center font-bold">Service Description</td>
+              <td class="mx-auto text-center font-bold">Unit Price</td>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(let i=0; i<data.length; i++) {%>
+              <% total+= parseFloat(data[i].price) %>
+                <tr>
+                  <td class="mx-auto text-center"><%=i+1%></td>
+                  <td class="mx-auto text-center"><%=data[i].service_description%></td>
+                  <td class="mx-auto text-center">₹ <%=parseFloat(data[i].price).toFixed(2)%></td>
+                </tr>
+              <%}%>
+              <tr>
+                <td class="mx-auto text-center font-bold" colspan="2">Total</td>
+                <td class="mx-auto text-center">₹ <%=total.toFixed(2)%></td>
+              </tr>
+              <tr>
+                <td class="mx-auto text-center font-bold" colspan="2">GST</td>
+                <td class="mx-auto text-center">12%</td>
+              </tr>
+              <tr>
+                <td class="mx-auto text-center font-bold" colspan="2">Final Amount</td>
+                <td class="mx-auto text-center">₹ <%=(total+(total*12)/100).toFixed(2)%></td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="text-left ml-[140px] mt-[80px] mb-10">
+        <p class="font-bold text-lg">Payment Information</p>
+        <% let invoiceDate = new Date(data[0].start_time) %>
+        <% let dueDate = new Date(invoiceDate.setDate(invoiceDate.getDate() + 7)) %>
+        <% let year = dueDate.getFullYear() %>
+        <% let month = (dueDate.getMonth()+1).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false }) %>
+        <% let date = (dueDate.getDate()).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false }) %>
+        <% if(data[0].payment_status == 0) {%>
+          <p class="text-sm text-red">Payment Status: Pending</p>
+          <p class="text-sm">Payment Due Date: <%=year%>-<%=month%>-<%=date%></p>
+          <%} else {%>
+            <p class="text-sm">Payment Status: Completed</p>
+            <%}%>
+      </div>
+    </div>
+  </body>
+</html>

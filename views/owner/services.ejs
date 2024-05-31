@@ -1,0 +1,37 @@
+<div class="service-container w-full">
+  <div class="flex justify-between items-center">
+    <select id="service-container-servicesList"
+      class="bg-dark border  text-gray-900 text-sm text-white rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-52">
+    </select>
+    <div class="service-button">
+      <button type="button" class="bg-dark w-max p-4 text-sm px-6 rounded-md mt-4"
+        onclick="loadService('add-service-container')">Add Service</button>
+    </div>
+  </div>
+
+  <div class="services w-full m-0 p-0">
+    <div class="w-full flex flex-wrap -mx-2" id="services-row">
+
+    </div>
+  </div>
+</div>
+<div class="add-service-container w-full" style="display: none;">
+  <div class="flex justify-between items-center">
+    <div class="w-max flex justify-center items-center">
+      <select id="add-service-container-servicesList"
+        class="bg-dark border  text-gray-900 text-sm text-white rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-52">
+      </select>
+    </div>
+    <div class="bg-dark p-2 w-max rounded-md text-white">
+      <input type="button" value="Back" class="w-20 h-8 bg-dark text-white cursor-pointer"
+        onclick="loadService('service-container')">
+    </div>
+  </div>
+
+  <div class="services w-full m-0 p-0">
+    <div class="services w-full m-0 p-0 flex flex-wrap" id="services-row">
+
+    </div>
+  </div>
+</div>
+  <%- include('./addService.ejs') %>

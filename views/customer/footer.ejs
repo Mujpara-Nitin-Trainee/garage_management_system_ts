@@ -1,0 +1,164 @@
+<script>
+  // const socketIo = io("");
+  socketIo.on("newServiceAdded", () => {
+    if (parseInt(localStorage.getItem("index")) == 3) {
+      steps.service();
+    }
+  });
+  /*Map */
+
+  const getUserLocation = async () => {
+    let location = await new Promise((resolve, reject) => {
+      navigator.geolocation.watchPosition(handleGetCurrentPosition, handleGetCurrentPositionError, { enableHighAccuracy: true });
+      function handleGetCurrentPosition(position) {
+        resolve([position.coords.latitude, position.coords.longitude]);
+      }
+      function handleGetCurrentPositionError() {
+        let latitude = 22.684282675883896;
+        let longitude = 72.88051636361853;
+        toast("error", "Geolocation is not supported by this browser.");
+        reject([latitude, longitude]);
+      }
+
+    });
+    return location;
+  };
+
+  const fetchGarages = async (MyLoc, map, lat, long, km = 10) => {
+    localStorage.clear()
+    map.panTo(new L.LatLng(lat, long));
+    let finder = document.querySelector('.overlay');
+    finder.innerHTML = `<div class="ring"></div>`
+    finder.style.zIndex = 1002;
+    let leftPanel = document.getElementById('dashboard-container');
+    leftPanel.innerHTML = `<div class='h-full w-full flex justify-center items-center'><div role="status">
+    <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+        <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+    </svg>
+    <span class="sr-only">Loading...</span>
+</div>`;
+    let locations = await (new Promise(async (resolve, reject) => {
+      let data = await callAPI(`/customer/garageList/${km}/${lat}/${long}`);
+      let garages = data.result;
+      setTimeout(() => {
+        leftPanel.innerHTML = (htmlHandler.fillHtml(data, "No garage Found..!!", "garage", "Near by Garages"));
+        document.querySelector('input[name=garage]')?.setAttribute('checked', true);
+        storeHandler.garageSelection();
+        document.querySelectorAll('input[name=garage]').forEach((control) => {
+          control.addEventListener("change", storeHandler.garageSelection);
+        });
+      }, 5000);
+
+      let result = [];
+      let i = 0;
+      garages.forEach(garage => {
+        result[i] = [];
+        result[i++].push(garage.garage_name, garage.latitude, garage.longitude, garage.thumbnail);
+      });
+      resolve(result);
+    }));
+    setTimeout(async () => {
+      await loadGaragePin(MyLoc, locations, map);
+      finder.innerHTML = '';
+      finder.style.zIndex = 0
+    }, 5000);
+
+    return locations;
+  }
+  const loadGaragePin = (MyLoc, locations, map) => {
+
+    const overlayMaps = {
+      "Marker": MyLoc
+    };
+    for (var i = 0; i < locations.length; i++) {
+      const myIcon = L.icon({
+        iconUrl: '/uploads/' + locations[i][3],
+        iconSize: [45, 45],
+        className: "iconPin",
+        // className: "border-2 border-sky-500",
+      });
+      let marker = new L.marker([locations[i][1], locations[i][2]], {
+        icon: myIcon, draggable: false
+      }).bindPopup(locations[i][0]).addTo(map);
+
+      marker._icon.id = i;
+      marker._icon.addEventListener('error', () => {
+        marker._icon.src = "/icons/garagePin.png"
+      });
+
+      //clicked on pin
+      marker._icon.addEventListener("click", (e) => {
+        let inputs = document.querySelectorAll("input[name=garage]");
+        inputs.forEach(garage => garage.removeAttribute('checked'))
+        inputs[e.target.id].setAttribute("checked", true);
+      });
+    }
+    // return overlayMaps
+  }
+  const loadMap = async () => {
+    const position = await getUserLocation();
+    console.log(position);
+    let map = L.map('map').setView(position, 13);
+    // Google layer (HTTPS URL)
+    const googleStreets = L.tileLayer('https://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}', {
+      maxZoom: 20,
+      subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    }).addTo(map);
+    /*My Location Icon*/
+    const myIcon = L.icon({
+      iconUrl: 'https://raw.githubusercontent.com/Makwana-Bharat/pathdarshak/main/assest/Images/Location.png',
+      iconSize: [50, 50],
+    });
+    const MyLoc = L.marker(position, { icon: myIcon, draggable: true }).addTo(map);
+    MyLoc._icon.id = "userPin";
+    let locations = await fetchGarages(MyLoc, map, position[0], position[1], 10);
+    /* Layer Management*/
+    const kmRange = (start, stop, step) =>
+      Array.from(
+        { length: (stop - start) / step + 1 },
+        (value, index) => start + index * step
+      );
+    let range = kmRange(5, 50, 5);
+    MyLoc.addEventListener('dragend', async (e) => {
+      let { lat, lng } = MyLoc.getLatLng();
+      for (const km of range) {
+        let userPin = document.getElementById("userPin");
+        let { top, left } = (userPin.getBoundingClientRect());
+        locations = await fetchGarages(MyLoc, map, lat, lng, km);
+        if (locations.length > 0)
+          break;
+      }
+    })
+
+  }
+  let valid = ["garage", "type", "vehicle", "service", "slots", "profile"]
+  let active = '<%= active %>';
+  if (active != 'dashboard') {
+    document.querySelector('.overlay').remove();
+    let index = localStorage.getItem("index");
+    if (!validateStore[valid[index == -2 ? 5 : index]]()) {
+      localStorage.clear();
+      changePage('next');
+      setActive('dashboard');
+    }
+    else {
+      changePage('next');
+      setActive('<%= active %>');
+    }
+  }
+  else {
+    changePage('next');
+    setActive('<%= active %>');
+  }
+
+  (async () => {
+    loadMap()
+    document.querySelector('loading').innerHTML = ''
+  })()
+</script>
+
+<script src="/scripts/toast.js"></script>
+</body>
+
+</html>

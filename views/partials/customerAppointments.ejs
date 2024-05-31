@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appointment History</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              dark: "#152533",
+              lightBlue: "#D9D9D9",
+              blue: "#355364",
+              white: "#FFFFFF",
+              light: "#D9D9D9",
+              lightbg: "#d7e0e7",
+              lightorange: "burlywood",
+              card1bg: "rgba(255, 225, 200, 0.5)",
+              card1text: "#e96a00",
+              card2bg: "rgba(225, 246, 247, 0.5)",
+              card2text: "#34cdd0",
+              card3bg: "rgba(252, 226, 225, 0.5)",
+              card3text: "#df5e5e",
+              card4bg: "rgba(237, 231, 251, 0.5)",
+              card4text: "#9a78ea",
+              red: "#ff0000",
+              green: "#008000",
+              black: "#000000",
+              linkBlue: "#0000ff"
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-lightbg">
+    <div class="max-w-[1480px] mx-auto mt-10 px-10">
+      <h1 class="font-bold text-center text-3xl">Appointment History</h1>
+      <% if(appointments.length == 0) {%>
+          <p class="text-center text-lg mt-[40px] text-red">No appointment has taken place yet.</p>
+        <%} else {%>
+          <table class="mt-[40px] mx-auto w-full border-b-[1px] border-black">
+            <thead>
+              <tr class="bg-dark text-white">
+                <th class="p-2">Sr. No.</th>
+                <th>Appointment Date</th>
+                <th>Garage Name</th>
+                <th>Payment Status</th>
+                <th>Invoice</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(let i=0; i<appointments.length; i++) {%>
+                <tr  class="hover:bg-lightbg border-b-[1px] border-black">
+                  <td class="mx-auto text-center p-4"><%=i+1%></td>
+                  <td class="mx-auto text-center"><%=appointments[i].start_time.split(" ")[0]%></td>
+                  <td class="mx-auto text-center"><%=appointments[i].garage_name%></td>
+                  <% if(appointments[i].payment_status==0) {%>
+                      <td class="mx-auto text-center"><p class="mx-auto py-[5px] rounded-lg bg-red text-white w-[100px] mt-2">Pending</p></td>
+                    <%} else {%>
+                      <td class="mx-auto text-center"><p class="mx-auto py-[5px] rounded-lg bg-green text-white w-[100px] mt-2">Completed</p></td>
+                      <%}%>
+                  <td class="mx-auto text-center underline text-linkBlue"><a id="download-invoice" href="/invoices/`<%=appointments[i].invoice_url%>`" download="invoice.pdf"><p class="hover:cursor-pointer">Download here</p></a></td>
+                </tr>
+                <%}%>
+            </tbody>
+          </table>
+          <%}%>
+    </div>
+    <script src="/scripts/appointments.js"></script>
+  </body>
+</html>

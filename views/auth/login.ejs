@@ -1,0 +1,45 @@
+<%- include('../partials/head.ejs') %>
+  <link rel="stylesheet" href="/styles/auth.css">
+  </head>
+  <script src="/scripts/validation.js"></script>
+
+  <body>
+    <toast></toast>
+    <div class="section">
+      <div class="container">
+        <div class="logo">
+          <img src="/assets/logo.png" alt="logo page">
+        </div>
+        <p class="projectTitle">Garage Management System</p>
+        <form method="post" id="login">
+          <div class="formContainer">
+            <div class="pageInputs">
+              <div class="pageIcons">
+                <img src="/icons/mail.svg" alt="m" class="icons">
+              </div>
+              <input type="text" name="email" id="email" placeholder="abc@pqr.xyz" tabindex="1"
+                validation="require email" oninput="Validation.isValid(this)">
+            </div>
+            <div class="pageInputs">
+              <div class="pageIcons">
+                <img src="/icons/lock.svg" class="icons" alt="l">
+              </div>
+
+              <input type="password" name="password" id="password" placeholder="* * * * * * * *" tabindex="2"
+                validation="require length8" oninput="Validation.isValid(this)">
+
+            </div>
+            <div class="forgotPassword">
+              <a href="/u/forgotPassword">forgot password ?</a>
+            </div>
+          </div>
+          <input type="button" class="submitButton" style="cursor: pointer;"  id="submitButton" value="LOGIN" tabindex="3"
+            onclick="Validation.validateAll('login','u/login')">
+          <div class="createAccount" style="margin-top: 20px;">
+            don’t have account ?<a href="/u" tabindex="4"> create account</a>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="/scripts/toast.js"></script>
+    <%- include('../partials/foot.ejs') %>

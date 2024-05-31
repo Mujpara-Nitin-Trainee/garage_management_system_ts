@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Feedback</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/styles/feedback.css" />
+  </head>
+  <body>
+    <div class="container mx-fit-content">
+      <div
+        class="content flex flex-col items-center border rounded-md border-2 max-w-[600px] bg-light mx-auto"
+      >
+        <div
+          class="p-5 text-2xl font-semibold border-2 bg-white w-full flex justify-center"
+        >
+          <p>Rate Your Experience</p>
+        </div>
+        <div class="p-5 text-xl">
+          <p>
+            How likely are you to recommend our services to your friend or
+            collegue?
+          </p>
+        </div>
+        <div class="flex flex-col items-center g-5 p-3 w-fulls">
+          <div class="card flex-col flex flex-col items-center w-full">
+            <br />
+            <div class="flex justify-around">
+              <span onclick="check(1)" class="star">★ </span>
+              <span onclick="check(2)" class="star">★ </span>
+              <span onclick="check(3)" class="star">★ </span>
+              <span onclick="check(4)" class="star">★ </span>
+              <span onclick="check(5)" class="star">★ </span>
+            </div>
+            <h3 id="output">Rating is: 0/5</h3>
+          </div>
+        </div>
+        <div class="flex justify-around w-full p-3">
+          <div><p>1- Extremly Unlikely</p></div>
+          <div><p>5- Extremely Likely</p></div>
+        </div>
+        <div class="flex-col items-start w-full p-5">
+          <label
+            for="message"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white font-semibold"
+          >
+            What's the main reason for your your score?</label
+          >
+          <textarea
+            id="message"
+            rows="4"
+            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Write your thoughts here..."
+          ></textarea>
+        </div>
+        <div class="flex justify-end w-full p-5">
+          <button
+            id="submit"
+            type="button"
+            class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="/scripts/feedback.js"></script>
+  </body>
+</html>

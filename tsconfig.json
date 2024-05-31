@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "pretty": true,
+    "sourceMap": true,
+    "target": "es2022",
+    "outDir": "./dist",
+    // "baseUrl": "./lib",
+    "strict": true,
+    "typeRoots": [
+      "./types/",
+      "./node_modules/@types"
+    ]
+  },
+  // "include": [
+  //   "lib/**/*.ts"
+  // ],
+  "exclude": [
+    "node_modules"
+  ]
+}

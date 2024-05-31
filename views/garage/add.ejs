@@ -1,0 +1,157 @@
+<style>
+  error {
+    font-size: 10px;
+    color: #ff0000;
+    font-size: 12px;
+    z-index: 99999999999999;
+    /* font-weight: lighter; */
+  }
+</style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+<form class="flex flex-col w-full h-max  rounded shadow-md p-4 bg-white" method="post" id=<%=formType%>
+  onsubmit="handleGarage(event)" enctype="multipart/form-data">
+  <h2 class="text-2xl font-bold mb-2 text-left text-dark">
+    <%= formType=='addGarage' ? 'New' : 'Update' %> Garage
+  </h2>
+  <div class="w-full f-full" id='garageDetails'>
+    <h3 class="text-dark font-semibold text-left mb-2">Garage Information</h3>
+    <hr>
+    <div class="w-full flex my-4">
+      <div class="flex items-center justify-center w-1/4 h-46 mr-5 relative">
+        <label for="<%=formType %>-thumbnail"
+          class="relative flex flex-col items-center justify-center w-full h-full border-2 border-dashed rounded-lg cursor-pointer bg-light dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+          <div class="flex flex-col items-center justify-center pt-5 pb-6">
+            <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+            </svg>
+            <p class="text-xs text-gray-500 dark:text-gray-400">Thumbnail</p>
+          </div>
+          <input id="<%=formType %>-thumbnail" name="<%=formType %>-thumbnail" type="file" class="hidden"
+            accept="image/*" onchange="imageSelection(this,'<%=formType %>')" <%=formType=='addGarage' ? 'required' : ''
+            %> /> <button id="remove-image"
+            class="absolute top-0 right-0 mt-2 mr-2 hidden text-gray-500 dark:text-gray-400 bg-transparent border-none">
+            <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M14.293 5.293a1 1 0 1 1 1.414 1.414L11.414 10l4.293 4.293a1 1 0 1 1-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 1 1-1.414-1.414L8.586 10 4.293 5.707a1 1 0 1 1 1.414-1.414L10 8.586l4.293-4.293z"
+                clip-rule="evenodd" />
+            </svg>
+          </button>
+          <img id="image-preview" class="hidden w-full  h-full absolute top-0 left-0 " dataBound="garagePic" />
+        </label>
+      </div>
+      <div class="input-group w-3/4 mt-2">
+        <div class="flex items-center mb-2">
+          <label for="garageName" class="text-md font-medium mr-2 w-[80px] text-left text-dark">Name</label>
+          <input type="text" id="garageName" name="garageName" placeholder="garage name"
+            class="flex-grow rounded border border-gray-300 px-2 py-1 focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm text-blue mr-2"
+            Validation="require multi_word" oninput="Validation.isValid(this)" dataBound="garageName">
+        </div>
+        <div class="flex items-center mb-2">
+          <label for="email" class="text-md font-medium mr-2 w-[80px] text-left text-dark">Email</label>
+          <input type="text" id="email" name="email" placeholder="abc@abcmail.com"
+            class="flex-grow rounded border border-gray-300 px-2 py-1 focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm text-blue mr-2"
+            Validation="require email" oninput="Validation.isValid(this)" dataBound="garageEmail">
+        </div>
+        <div class="flex items-center mb-2">
+          <label for="contactNumber" class="text-md font-medium mr-2 w-[80px] text-left text-dark">Contact</label>
+          <input type="text" id="contactNumber" name="contactNumber" placeholder="1234567890"
+            class="flex-grow rounded border border-gray-300 px-2 py-1 focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm text-blue mr-2"
+            Validation="require digit10 mobile" oninput="Validation.isValid(this)" dataBound="garageContact">
+        </div>
+      </div>
+    </div>
+    <div class="input-group flex w-full">
+      <div class="flex items-center mb-3 w-1/2 mr-4">
+        <label for="openTime" class="text-sm  mr-2 text-left font-medium text-dark">Open Time</label>
+        <input type="time" id="openTime" name="openTime"
+          class="flex-grow rounded border border-gray-300 px-2 py-1 focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm text-blue mr-2"
+          Validation="require" oninput="Validation.isValid(this)" dataBound="garageOpenTime">
+      </div>
+      <div class="flex items-center mb-4 w-1/2">
+        <label for="closeTime" class="text-sm  mr-2 text-left font-medium text-dark">Close Time</label>
+        <input type="time" id="closeTime" name="closeTime"
+          class="flex-grow rounded border border-gray-300 px-2 py-1 focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm text-blue mr-2"
+          Validation="require" oninput="Validation.isValid(this)" dataBound="garageCloseTime">
+      </div>
+    </div>
+    <h3 class="text-dark font-semibold text-left my-2">Address Information</h3>
+    <hr>
+    <div class="input-group flex w-full mt-2">
+      <div class="flex items-center mb-4 w-1/2 mr-4">
+        <label for="area" class="text-sm font-mediu mr-2 text-left font-medium w-[80px]  text-dark">Area</label>
+        <input type="text" id="area" name="area" placeholder="00,xyz"
+          class="flex-grow rounded border border-gray-300 px-2 py-1 focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm text-blue"
+          Validation="require">
+      </div>
+      <div class="flex items-center mb-4 w-1/2">
+        <label for="state" class="text-sm  mr-2 text-left font-medium w-[80px]  text-dark">State</label>
+        <select id="state" name="state"
+          class="state flex-grow rounded border border-gray-300 px-2 py-1 focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm text-blue"
+          Validation="require" dataBound="garageState"></select>
+      </div>
+    </div>
+    <div class="input-group flex w-full">
+      <div class="flex items-center mb-4 w-1/2 mr-4">
+        <label for="cityId" class="text-sm font-mediu mr-2 text-left font-medium w-[80px]  text-dark">City</label>
+        <select id="cityId" name="cityId"
+          class="city flex-grow rounded border border-gray-300 px-2 py-1 focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm text-blue"
+          Validation="none" dataBound="garageCity">
+        </select>
+      </div>
+      <div class="flex items-center mb-4 w-1/2">
+        <label for="pincode" class="text-sm  mr-2 font-medium w-[80px] text-left text-dark">Pincode</label>
+        <input type="text" id="pincode" name="pincode" placeholder="123456"
+          class="flex-grow rounded border border-gray-300 px-2 py-1 focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm text-blue"
+          Validation="require digit6" oninput="Validation.isValid(this)" dataBound="garagePincode">
+      </div>
+    </div>
+    <div class="w-full flex justify-start">
+      <label for="description" class="text-sm font-bold mr-2 text-left text-dark ">Description</label>
+    </div>
+    <div class="flex items-center mb-4">
+      <textarea id="description" name="description" rows="5"
+        class="flex-grow rounded border border-gray-300 px-2 py-1 focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm text-blue"
+        placeholder="type here.." Validation="none" dataBound="garageDescription"></textarea>
+    </div>
+    <div class="w-full flex justify-end">
+      <button type="button" class="bg-dark  text-white font-bold py-2 px-4 w-max rounded shadow-md mt-4"
+        onclick="changeStep('<%= formType %>', 'garageDetails','mapContainer')">
+        Next</button>
+    </div>
+  </div>
+  <div id="mapContainer" class="w-full h-full hidden">
+    <div class="w-full flex justify-start items-end flex-col">
+      <div id="<%= formType %>-map" class="w-full" style="height: 400px;"></div>
+      <div class="flex items-center my-2">
+        <label for="latitude" class="mr-2">Latitude:</label>
+        <input type="text" id="latitude" name="latitude" readonly class="bg-gray-100 px-2 py-1 rounded"
+          Validation="none">
+      </div>
+      <div class="flex items-center mb-2">
+        <label for="longitude" class="mr-2">Longitude:</label>
+        <input type="text" id="longitude" name="longitude" readonly class="bg-gray-100 px-2 py-1 rounded"
+          Validation="none">
+      </div>
+    </div>
+    <div class="w-full flex justify-between items-end">
+      <button type="button" class="bg-dark text-white font-bold py-2 px-4 w-max rounded shadow-md mt-4"
+        onclick="changeStep('<%= formType %>', 'mapContainer','garageDetails')">
+        Previous
+      </button>
+      <button type="submit" class="bg-dark  text-white font-bold py-2 px-4 w-max rounded shadow-md mt-4">
+        <%= formType=='addGarage' ? 'Add' : 'Update' %>
+      </button>
+    </div>
+  </div>
+</form>
+
+<script>
+  loadMap('<%= formType %>' + '-map');
+  loadAddress('<%= formType %>');
+
+</script>

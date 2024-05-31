@@ -1,0 +1,221 @@
+<%- include('./customer/head.ejs') %>
+    <link rel="stylesheet" href="/styles/customer/garageList.css">
+    <link rel="stylesheet" href="/styles/customer/calendar.css">
+    <style>
+        error {
+            font-size: 14px;
+            color: #ff0000;
+            font-weight: lighter;
+        }
+
+        * {
+            scroll-behavior: smooth;
+            transition: all 0.1s;
+        }
+
+        ::placeholder {
+            color: var(--bg-light);
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0px;
+            height: 0px;
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        input[name="garage"]:checked+label>div {
+            border: 1px solid white;
+        }
+
+        input[name=type]:checked+label>div,
+        input[name=vehicle]:checked+label>div,
+        input[name=slots]:checked+label>div {
+            border: 1px solid white
+        }
+
+        input[type="checkbox"]:checked+label>div {
+            border: 1px solid white;
+        }
+
+        .loading-animation {
+            animation: zoomInOut 1s infinite alternate;
+        }
+
+        @keyframes zoomInOut {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1.1);
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="/styles/mapOverlay.css">
+    </head>
+
+    <body>
+        <loading>
+            <loader
+                class="w-screen h-screen absolute top-0 left-0 z-[1005] bg-dark flex justify-center items-center opacity-95">
+                <img class="loading-animation" src="/assets/logo.png" height="250" width="250" />
+            </loader>
+        </loading>
+        <toast></toast>
+        <% var active=active || 'dashboard' ; %>
+            <div id="container" class="flex h-screen overflow-hidden w-full bg-lightbg">
+                <%- include('./customer/headbar.ejs') %>
+                    <div class="w-[78%] h-screen" id="mapScreen">
+                        <div class="h-screen w-full bg-lightbg relative" id="mapParent">
+                            <div class="overlay absolute w-full h-full flex justify-center items-center"
+                                style="z-index: 1002;">
+                                <div class="ring">
+                                </div>
+                            </div>
+                            <%- include('./customer/dashboardMap.ejs')%>
+                                <div id="other"
+                                    class="absolute p-10 top-0 left-0 w-full h-full bg-[rgba(0,0,0,.2)] backdrop-blur-md flex justify-center items-center"
+                                    style="display: none;">
+
+                                </div>
+                                <div class=" absolute bottom-1 right-1" style="z-index: 1003; " id="btn-container">
+                                    <button id="btn-prev" onclick="changePage('prev')"
+                                        class="hidden cursor-pointer bg-dark p-2 rounded-md text-white text-bold tracking-wider px-6">
+                                        Prev </button>
+                                    <button id="btn-next"
+                                        class="hidden cursor-pointer bg-dark p-2 rounded-md text-white text-bold tracking-wider px-6"
+                                        onclick="changePage('next')">
+                                        Next </button>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="h-screen w-[22%] bg-dark" id="otherScreen">
+                        <div class="page-match-container w-full h-full" id="dashboard-container">
+                            <strong class="text-white">Loading..</strong>
+                        </div>
+                        <div class="page-match-container w-full h-full" id="vehicle-container" style="display: none;">
+                            <strong class="text-white">Loading..</strong>
+                        </div>
+                        <div class="page-match-container w-full h-full" id="service-container" style="display: none;">
+                            <strong class="text-white">Loading..</strong>
+                        </div>
+                        <div class="page-match-container w-full h-full" id="vehicleList-container"
+                            style="display: none;">
+                            <strong class="text-white">Vehicle Loading..</strong>
+                        </div>
+                        <div class="page-match-container w-full h-full" id="slots-container" style="display: none;">
+                            <strong class="text-white">Slot..</strong>
+                        </div>
+                    </div>
+                    <div class="page-match-container w-full relative" id="profile-container" style="display: none;">
+                        <strong class="text-white">Profile..</strong>
+                    </div>
+            </div>
+            <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+            <script>
+                const filterServices = (e) => {
+                    let search = e.target.value;
+                    search = search.toUpperCase().trim();
+                    let services = document.getElementsByClassName('serviceContainer');
+                    for (var i = 0; i < services.length; i++) {
+                        let service = services[i];
+                        service.style.display = 'none';
+                        let name = service.querySelector('h3').innerText;
+                        console.log(name)
+                        name = name.toUpperCase().trim();
+                        if (name.search(search) != -1) {
+                            service.style.display = 'flex';
+                        }
+                    };
+                }
+                let screen = ["dashboard", "vehicle", "vehicleList", "service", "slots", "book"];
+                let nextOne = screen[screen.indexOf('<%= active%>')];
+                localStorage.setItem("index", screen.indexOf('<%= active%>') - 1);
+
+                const changePage = (step) => {
+                    if (step == 'next' && parseInt(localStorage.getItem("index")) == 4) {
+                        if (validateStore.payment()) {
+                            book();
+                            return
+                        }
+                        return
+                    }
+                    let activeIndex = parseInt(localStorage.getItem("index"));
+                    localStorage.setItem("index", (activeIndex + (step == 'prev' ? -1 : 1)))
+                    activeIndex = parseInt(localStorage.getItem("index"));
+                    if (activeIndex == 0) {
+                        document.getElementById('btn-prev').classList.add('hidden')
+                        document.getElementById('btn-next').classList.remove('hidden')
+                    }
+                    else if (activeIndex == screen.length - 1) {
+                        document.getElementById('btn-next').classList.add('hidden')
+                        document.getElementById('btn-prev').classList.remove('hidden')
+                    }
+                    else {
+                        document.getElementById('btn-prev').classList.remove('hidden')
+                        document.getElementById('btn-next').classList.remove('hidden')
+                    }
+                    const showMap = () => {
+                        let formPlace = document.getElementById('other');
+                        formPlace.style.display = "none";
+                        formPlace.style.zIndex = 0
+                    }
+                    switch (activeIndex) {
+                        case 1:
+                            showMap();
+                            break;
+                        case 2:
+                            if (validateStore.vehicle())
+                                addVehicleForm();
+                            else
+                                return
+                            break;
+                        case 3:
+                            if (!validateStore.service())
+                                return
+                            showMap();
+                            break;
+                        case 4:
+                            if (validateStore.slots()) addCalendar()
+                            else
+                                return
+                            break;
+
+                        default:
+                            break;
+                    }
+                    setActive(screen[activeIndex])
+                }
+                const setActive = (activated = "dashboard") => {
+                    localStorage.setItem("index", screen.indexOf(activated) || 0);
+                    document.querySelectorAll('.page-match-container').forEach(page => page.style.display = "none")
+                    if (activated != "dashboard" && !localStorage.getItem('garageId') && activated != 'profile') {
+                        activated = "dashboard"
+                    }
+                    let matchScreen = document.querySelector(`#${activated}-container`);
+                    matchScreen.style.display = "block";
+                    if (activated != "slots") steps[activated]();
+                    history.pushState(null, null, activated == "dashboard" ? "home" : activated)
+                }
+            </script>
+            <script src="/scripts/loadAddress.js"></script>
+            <script src="/scripts/customer/profileFill.js"></script>
+            <script src="/scripts/appointments.js"></script>
+            <script src="/scripts/customer/userAppointments.js"></script>
+            <script src="/scripts/customer/userVehicles.js"></script>
+            <script src="/scripts/customer/addVehicle.js"></script>
+            <script src="/scripts/customer/appointmentBook.js"></script>
+            <script src="/scripts/customer/stepHandler.js"></script>
+            <script src="/scripts/customer/calendar.js"></script>
+            <script src="/scripts/customer/payment.js"></script>
+            <script src="/scripts/validation.js"></script>
+            <script src="/scripts/imageSelection.js"></script>
+            <%- include('./customer/footer.ejs') %>
+
+    </body>

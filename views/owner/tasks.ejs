@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tasks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              dark: "#152533",
+              lightBlue: "#D9D9D9",
+              blue: "#355364",
+              white: "#FFFFFF",
+              light: "#D9D9D9",
+              lightbg: "#d7e0e7",
+              lightorange: "burlywood",
+              card1bg: "rgba(255, 225, 200, 0.5)",
+              card1text: "#e96a00",
+              card2bg: "rgba(225, 246, 247, 0.5)",
+              card2text: "#34cdd0",
+              card3bg: "rgba(252, 226, 225, 0.5)",
+              card3text: "#df5e5e",
+              card4bg: "rgba(237, 231, 251, 0.5)",
+              card4text: "#9a78ea",
+              red: "#ff0000",
+              black: "#000000",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="bg-lightbg">
+    <div>
+      <h1 class="text-3xl text-dark font-bold">Tasks List</h1>
+      <div class="flex mt-10 text-xl">
+        <label>Select Garage:</label>
+        <select
+          id="garage-list"
+          class="ml-3 text-lg px-2 py-1 rounded-lg bg-white"
+          onchange="getVehicleTasks()"
+        ></select>
+      </div>
+      <div class="mt-10 bg-white p-10 rounded-2xl" id="task-list"></div>
+    </div>
+    <script src="/scripts/tasks.js"></script>
+  </body>
+</html>

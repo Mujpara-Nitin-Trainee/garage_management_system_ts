@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Kadwa:wght@400;700&display=swap");
+
+:root {
+  --dark: #152533;
+  --blue: #355364;
+  --white: #ffffff;
+  --light: #d9d9d9;
+  --light-bg: #d7e0e7;
+  --lightorange: burlywood;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Kadwa", serif;
+  /* overflow: hidden; */
+}
+
+body {
+  text-align: center;
+  background-color: #d7e0e7;
+}
+
+.section2 {
+  background-color: #182b3b;
+  color: aliceblue;
+  font-weight: bolder;
+  height: 100%;
+  width: 20rem;
+  position: fixed;
+  background-repeat: repeat-y;
+}
+
+.section2 .row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.section2 .col {
+  margin: 0 auto;
+}
+
+/* .section2 .col .module-wrapper.section1{
+  float: top left;
+} */
+
+.section2 .brand {
+  padding: 5px;
+}
+
+.brand .brand-img img {
+  width: 100px;
+  height: 100px;
+}
+
+.section2 .col ul li {
+  list-style: none;
+}
+
+.section2 .col .menus {
+  text-align: left;
+  margin-left: 6px;
+  margin-top: 20px;
+}
+
+.section2 .col .menus li {
+  margin-top: 10px;
+  color: rgba(217, 217, 217, 0.6);
+}
+
+.section2 .col .module-wrapper .section1 .header {
+  display: inline-flex;
+  float: right;
+  top: 0;
+  align-items: center;
+  margin: 10px;
+  padding: 0px 30px;
+  position: fixed;
+  margin-left: 200px;
+}
+
+.section1 .header .module-title {
+  margin-right: 550px;
+  font-weight: bolder;
+  color: var(--dark);
+}
+
+.section1 .header .header-profile {
+  background-color: #dfe7ec;
+  align-items: center;
+  display: inline-flex;
+  margin-right: 5px;
+  padding: 5px 10px;
+  border: 1px solid #bcc0c2;
+  border-radius: 50px;
+}
+
+.section1 .header .header-profile .header-title {
+  padding: 0 10px 0 0;
+  font-weight: bold;
+  color: var(--dark);
+}
+
+.section1 .header .header-notification img {
+  border: 1px solid #dbe3e8;
+  border-radius: 50%;
+}
+
+.section3 .wrapper {
+  background-color: #355364;
+}
+
+input[type="submit"],
+button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+.page-container {
+  overflow-y: auto;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+::placeholder {
+  color: var(--light-bg);
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}

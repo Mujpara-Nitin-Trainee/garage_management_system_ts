@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="/styles/simpleCalendar.css">
+    <link href=" https://cdn.jsdelivr.net/npm/sweetalert2@11.10.7/dist/sweetalert2.min.css " rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#152533',
+                        blue: '#355364',
+                        white: '#FFFFFF',
+                        light: '#D9D9D9',
+                        lightbg: "#d7e0e7",
+                        lightorange: 'burlywood',
+                        card1bg: 'rgba(255, 225, 200, 0.5)',
+                        card1text: '#e96a00',
+                        card2bg: 'rgba(225, 246, 247, 0.5)',
+                        card2text: '#34cdd0',
+                        card3bg: 'rgba(252, 226, 225, 0.5)',
+                        card3text: '#df5e5e',
+                        card4bg: 'rgba(237, 231, 251, 0.5)',
+                        card4text: '#9a78ea'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        [type=radio]+img {
+            cursor: pointer;
+        }
+
+        [type=radio]:checked+img {
+            background-color: rgb(125 211 252);
+            border-color: rgb(107 114 128);
+        }
+    </style>
+    <script src="/scripts/apiCall.js"></script>
+    <link rel="stylesheet" href="/styles/toast.css">

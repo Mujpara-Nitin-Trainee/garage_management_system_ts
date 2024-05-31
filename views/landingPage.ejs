@@ -1,0 +1,210 @@
+<%- include('./partials/head') %>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/styles/landingPage.css">
+  <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
+  <link rel="stylesheet"
+    href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+
+  <%- include('./partials/navbar'); %>
+
+    <div class="section">
+      <section class="relative  bg-blueGray-50" id="landing-section">
+        <div class="relative  pb-32 flex content-center items-center justify-center min-h-screen-75">
+          <div class="container text-center type-writer mx-auto pr-12">
+            <h1 class="text-white text-4xl  font-bold">Garage Management System</h1>
+            <p class="text-teal-300">Welcome to the ultimate and iconic world and explore our garage management
+              system
+            </p>
+          </div>
+          <div class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px"
+            style="transform: translateZ(0px)">
+            <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
+              version="1.1" viewBox="0 0 2560 100" x="0" y="0">
+              <polygon class="text-blueGray-200 fill-current" points="2560 0 2560 100 0 100"></polygon>
+            </svg>
+          </div>
+        </div>
+        <section class="pb-10 pt-10 bg-blueGray-200 -mt-24">
+          <div class="container mx-auto px-4">
+            <div class="flex flex-wrap">
+              <div class="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
+                <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                  <div class="px-4 py-5 flex-auto">
+                    <div
+                      class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
+                      <i class="fas fa-award"></i>
+                    </div>
+                    <h6 class="text-xl font-semibold">Several Excellent Services</h6>
+                    <p class="mt-2 mb-4 text-blueGray-500">
+                      Garage Owner Can add Mulitple Services that will make Customer Vehicle adorable
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="w-full md:w-4/12 px-4 text-center">
+                <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                  <div class="px-4 py-5 flex-auto">
+                    <div
+                      class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-lightBlue-400">
+                      <i class="fas fa-retweet"></i>
+                    </div>
+                    <h6 class="text-xl font-semibold">Multiple Garages</h6>
+                    <p class="mt-2 mb-4 text-blueGray-500">
+                      Owner Can add mulitple garages.We provides tracks of every garage latest update.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="pt-6 w-full md:w-4/12 px-4 text-center">
+                <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                  <div class="px-4 py-5 flex-auto">
+                    <div
+                      class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-emerald-400">
+                      <i class="fas fa-fingerprint"></i>
+                    </div>
+                    <h6 class="text-xl font-semibold">Appointment Booking</h6>
+                    <p class="mt-2 mb-4 text-blueGray-500">
+                      Customer can book appointment.owner will approve and will be notified.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </section>
+      </section>
+    </div>
+    <div class="section  mt-24  text-center" id="section2">
+      <h2 class="text-dark text-3xl font-bold">Our Services</h2>
+      <p class="text-dark text-lg mt-10">We provides high-quality, convenient, and affordable servicing for all
+        makes and models.
+      <p>
+      <section class="text-gray-700 body-font">
+        <div class="container px-5 mx-auto">
+
+          <div class="flex flex-wrap -m-4 text-center">
+            <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
+              <div
+                class="border-2 border-gray-600 px-4 py-6 rounded-lg transform transition duration-500 hover:scale-110">
+                <!-- <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  class="text-indigo-500 w-12 h-12 mb-3 inline-block" viewBox="0 0 24 24">
+                  <path d="M8 17l4 4 4-4m-4-5v9"></path>
+                  <path d="M20.88 18.09A5 5 0 0018 9h-1.26A8 8 0 103 16.29"></path>
+                </svg> -->
+                <img src="icons/oil-change.svg" alt="oil change" class="w-20 h-20 ml-[40%]">
+                <h2 class="title-font font-medium text-3xl text-gray-900">Oil Change</h2>
+                <p class="leading-relaxed">Oil changing</p>
+              </div>
+            </div>
+            <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
+              <div
+                class="border-2 border-gray-600 px-4 py-6 rounded-lg transform transition duration-500 hover:scale-110">
+                <img src="icons/bxs-car-mechanic.svg" alt="engine Repair" class="w-20 h-20 ml-[35%]">
+                <h2 class="title-font font-medium text-2xl text-gray-900">Engine Repairing</h2>
+                <p class="leading-relaxed">Engine</p>
+              </div>
+            </div>
+            <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
+              <div
+                class="border-2 border-gray-600 px-4 py-6 rounded-lg transform transition duration-500 hover:scale-110">
+                <img src="icons/setting.svg" alt="setting" class="w-20 h-20 ml-[35%]">
+                <h2 class="title-font font-medium text-3xl text-gray-900">General Service</h2>
+                <p class="leading-relaxed">General</p>
+              </div>
+            </div>
+            <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
+              <div
+                class="border-2 border-gray-600 px-4 py-6 rounded-lg transform transition duration-500 hover:scale-110">
+                <img src="icons/battery.svg" alt="battery" class="w-20 h-20 ml-[35%]">
+                <h2 class="title-font font-medium text-3xl text-gray-900">Battery</h2>
+                <p class="leading-relaxed">Battery Exchange</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="bg-gray-900 py-24 sm:py-32">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl lg:max-w-none">
+          <div class="text-center space-y-4">
+            <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Trusted by creators worldwide</h2>
+            <p class="text-lg leading-8 text-gray-300">We provides high-quality, convenient, and affordable servicing
+              for all
+              makes and models.
+            </p>
+          </div>
+          <dl
+            class="mt-16 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-2 lg:grid-cols-4">
+            <div class="flex flex-col bg-white/5 p-8">
+              <dt class="text-sm font-semibold leading-6 text-gray-300">Garages Registerd</dt>
+              <dd class="order-first text-3xl font-semibold tracking-tight text-white" id="garageCount">12 million</dd>
+            </div>
+            <div class="flex flex-col bg-white/5 p-8">
+              <dt class="text-sm font-semibold leading-6 text-gray-300">Happy Customers</dt>
+              <dd class="order-first text-3xl font-semibold tracking-tight text-white" id="customerCount">10k</dd>
+            </div>
+            <div class="flex flex-col bg-white/5 p-8">
+              <dt class="text-sm font-semibold leading-6 text-gray-300">Years of experience</dt>
+              <dd class="order-first text-3xl font-semibold tracking-tight text-white">10</dd>
+            </div>
+            <div class="flex flex-col bg-white/5 p-8">
+              <dt class="text-sm font-semibold leading-6 text-gray-300">Services Available</dt>
+              <dd class="order-first text-3xl font-semibold tracking-tight text-white" id="serviceCount">2.1k</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <footer class="relative bg-blueGray-200 pt-5 pb-6">
+      <div class="container mx-auto px-4">
+        <div class="w-full flex-col items-center justify-between text-center">
+          <h4 class="text-3xl fonat-semibold text-blueGray-700">Let's keep in touch!</h4>
+          <h5 class="text-lg mt-2 mb-2 text-blueGray-600">
+            Find us on any of these platforms, we respond 1-2 business days.
+          </h5>
+          <div class="mt-6 lg:mb-0 mb-6">
+            <button
+              class="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+              type="button">
+              <i class="fab fa-twitter"></i></button><button
+              class="bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+              type="button">
+              <i class="fab fa-facebook-square"></i></button><button
+              class="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+              type="button">
+              <i class="fab fa-dribbble"></i></button><button
+              class="bg-white text-blueGray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+              type="button">
+              <i class="fab fa-github"></i>
+            </button>
+          </div>
+        </div>
+        <hr class="my-6 border-blueGray-300">
+        <div class="flex flex-wrap items-center md:justify-between justify-center">
+          <div class="w-full px-4 mx-auto text-center">
+            <div class="text-sm text-blueGray-500 font-semibold py-1">
+              Copyright © <span id="get-current-year">2024</span><a href="#"
+                class="text-blueGray-500 hover:text-gray-800" target="_blank">
+                <a href="#" class="text-blueGray-500 hover:text-blueGray-800">Team Binary Vortex</a>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+      (async () => {
+        let data = await fetch('/garagesCount');
+        let json = await data.json();
+        document.getElementById('garageCount').innerHTML = json.count + " +";
+        data = await fetch('/customerCount');
+        json = await data.json();
+        document.getElementById('customerCount').innerHTML = json.count + " +";
+        data = await fetch('/serviceCount');
+        json = await data.json();
+        document.getElementById('serviceCount').innerHTML = json.count + " +";
+      })();
+    </script>
+
+
+
+    <%- include('./partials/foot') %>

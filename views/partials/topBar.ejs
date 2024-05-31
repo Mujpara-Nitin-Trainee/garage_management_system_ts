@@ -1,0 +1,69 @@
+<div class="top-nav flex justify-between items-center w-full h-[32px] mb-4">
+  <strong id="currentPage">
+    <%= active.charAt(0).toUpperCase()+active.substring(1) %>
+  </strong>
+
+  <div class="flex p-2 justify-center items-center text-left bg-emerald-400 max-w-fit rounded-xl z-10 invisible"
+    id="notificationPopup">
+    <div class="ml-3 overflow-hidden">
+      <div class="flex justify-between items-center">
+        <p class="font-medium text-gray-700" id="userNameNotification"></p>
+        <div class="border-2" onclick="closeNotification()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+            style="fill: rgba(0, 0, 0, 1);">
+            <path
+              d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z">
+            </path>
+          </svg>
+        </div>
+      </div>
+      <p class="max-w-xs text-sm text-gray-500" id="userNameNotification">
+      </p>
+    </div>
+  </div>
+
+
+  <div class="right h-full flex">
+    <div class="user-profile flex justify-between items-center h-full p-1 rounded-[15px] w-max shadow">
+      <span class="text-[12px] m-2 font-bold" dataBound="name">Loading...</span>
+      <img dataBound="profile_pic" class="h-full rounded-full cursor-pointer" onclick="setActive('profile')" />
+    </div>
+
+    <div>
+      <div class="float-right relative bg-lightbg rounded-full shadow p-1 -mt-[1px] cursor-pointer" id="notification"
+        onclick="showNotification()">
+        <div class="absolute rounded-full w-[20px] h-[20px] ml-3 -mt-1 text-center flex justify-center items-center"
+          style="background-color: rgb(248 113 113)">
+          <div class="absolute text-sm text-white text-center totalNotification" id="totalNotification">0</div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+          style="fill: rgba(0, 0, 0, 1);">
+          <path
+            d="M12 22a2.98 2.98 0 0 0 2.818-2H9.182A2.98 2.98 0 0 0 12 22zm7-7.414V10c0-3.217-2.185-5.927-5.145-6.742C13.562 2.52 12.846 2 12 2s-1.562.52-1.855 1.258C7.185 4.074 5 6.783 5 10v4.586l-1.707 1.707A.996.996 0 0 0 3 17v1a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-1a.996.996 0 0 0-.293-.707L19 14.586z">
+          </path>
+        </svg>
+      </div>
+      <div class="userNotification" id="userNotification">
+        <div class="bg-slate-400 max-w-fit p-2 mt-10 -ml-[315px] float-left rounded-lg absolute hidden"
+          id="detailedNotification">
+          <div class="bg-slate-400 p-3 w-10 h-10 -mt-2 mb-3 float-right rotate-45"></div>
+          <div class="bg-light py-1 px-2 m-2 rounded-lg text-left relative">
+            <h4>Loading...</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  async function showNotification() {
+    let active = "appointment";
+    setActive(active);
+  }
+
+  function hideNotification() {
+    let notification = document.getElementById("detailedNotification");
+    notification.style.display = "none";
+  }
+</script>

@@ -1,0 +1,40 @@
+<script>
+  const logout = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: `You want to logout???`,
+      showDenyButton: true,
+      confirmButtonText: "Yes",
+      denyButtonText: "No"
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        localStorage.clear();
+        location.href = "/logout"
+      }
+    });
+  }
+</script>
+<div class="h-screen w-[5%] bg-dark flex flex-col justify-between items-center">
+  <div class="brand-logo top-0 left-0 m-2">
+    <img src="/assets/logo.png" alt="logo" class="w-[50px] h-[50px]" />
+  </div>
+  <div class="brand">
+    <p
+      class="-mt-10 break-words text-center font-bold text-2xl capitalize text-slate-300 tracking-widest whitespace-break-spaces">
+      <br />G<br />a<br />r<br />a<br />g<br />e<br />G<br />u<br />r<br />u
+    </p>
+  </div>
+  <div class=" m-2 flex flex-col justify-evenly items-center h-[15%]">
+    <div onclick="setActive('profile')">
+      <img src="" class="rounded-full w-[45px] h-[45px] border-4 border-blueborder cursor-pointer" alt="user"
+        id="prifile_pic"
+        onerror="this.src='https://wallpapers-clan.com/wp-content/uploads/2022/08/default-pfp-19.jpg'" />
+
+    </div>
+    <div>
+      <button type="button" class="w-full py-2 px-2 cursor-pointer" onclick="logout()" />
+      <img src="/icons/logout.svg" class="w-[45px] h-[45px]" alt="" srcset="">
+      </button>
+    </div>
+  </div>
+</div>

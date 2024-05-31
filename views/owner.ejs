@@ -1,0 +1,199 @@
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+<script>
+    const socketIo = io("");
+</script>
+<script src="/scripts/apiCall.js"></script>
+<script src="/scripts/loadAddress.js"></script>
+<script src="/scripts/updateDetails.js"></script>
+<script src="/scripts/timeConverter.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="/scripts/imageSelection.js"></script>
+<script src="/scripts/loadMap.js"></script>
+<script src="/scripts/garageDropdown.js"></script>
+<script src="/scripts/loadServices.js"></script>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    dark: '#152533',
+                    blue: '#355364',
+                    white: '#FFFFFF',
+                    light: '#D9D9D9',
+                    lightbg: "#d7e0e7",
+                    lightorange: 'burlywood',
+                    card1bg: 'rgba(255, 225, 200, 1)',
+                    card1text: '#e96a00',
+                    card2bg: '#dbf0f5',
+                    card2text: '#34cdd0',
+                    card3bg: 'rgba(252, 226, 225, 1)',
+                    card3text: '#df5e5e',
+                    card4bg: '#dfd1ff',
+                    card4text: '#9a78ea',
+                    red: "#ff0000",
+                    green: "#008000",
+                    black: "#000000",
+                    linkBlue: "#0000ff"
+                }
+            }
+        }
+    }
+</script>
+<%- include('./partials/head.ejs') %>
+    <link rel="stylesheet" href="/styles/ownerProfile.css">
+    <link rel="stylesheet" href="/styles/garageForm.css">
+    <link rel="stylesheet" href="/styles/slot.css">
+    </head>
+    <% var active=active || 'dashboard' ; %>
+
+        <body class="overlow-hidden">
+            <div class="dashboard-container h-screen w-screen flex overflow-hidden">
+                <%- include('./partials/sidebar', {active}) %>
+                    <div class="flex flex-col h-full bg-lightbg p-5 flex-grow overflow-hidden">
+                        <%- include(`./partials/topBar.ejs`, {active:"Dashboard"})%>
+                            <div class="page-container bg-lightbg flex-grow overflow-hidden" style="display: none;"
+                                id="dashboard-screen">
+                                <%- include(`./owner/dashboard.ejs`) %>
+                            </div>
+                            <div class="page-container flex flex-col h-full bg-lightbg p-5 flex-grow"
+                                style="display: none;" id="profile-screen">
+                                <%- include(`./owner/profile.ejs`) %>
+                            </div>
+                            <div class="page-container flex flex-col h-full bg-lightbg p-5 flex-grow"
+                                style="display: none;" id="profile-edit-screen">
+                                <%- include(`./garage/updateProfile.ejs`) %>
+                            </div>
+                            <div class="page-container flex flex-col h-full bg-lightbg p-5 flex-grow"
+                                style="display: none;" id="garages-screen">
+                                <%- include(`./owner/garages.ejs`) %>
+                            </div>
+                            <div class="page-container flex flex-col h-full bg-lightbg p-5 flex-grow"
+                                style="display: none;" id="services-screen">
+                                <%- include(`./owner/services.ejs`) %>
+                            </div>
+                            <div class="page-container flex flex-col h-full bg-lightbg p-5 flex-grow"
+                                style="display: none;" id="slots-screen">
+                                <%- include(`./owner/slots.ejs`) %>
+                            </div>
+                            <div class="page-container flex flex-col h-full bg-lightbg p-5 flex-grow"
+                                style="display: none;" id="slot-add-screen">
+                                <%- include(`./owner/addSlot`) %>
+                            </div>
+                            <div class="page-container flex flex-col h-full bg-lightbg p-5 flex-grow"
+                                style="display: none;" id="appointment-screen">
+                                <%- include(`./owner/appointments.ejs`) %>
+                            </div>
+                            <div class="page-container flex flex-col h-full bg-lightbg p-5 flex-grow"
+                                style="display: none;" id="inventory-screen">
+                                <%- include(`./owner/inventory.ejs`) %>
+                            </div>
+                            <div class="page-container flex flex-col h-full bg-lightbg p-5 flex-grow"
+                                style="display: none;" id="employee-screen">
+                                <%- include(`./owner/employee.ejs`) %>
+                            </div>
+                            <div class="page-container flex flex-col h-full bg-lightbg p-5 flex-grow"
+                                style="display: none;" id="employee-add-screen">
+                                <%- include(`./owner/addEmployee.ejs`, {formType: 'addEmployee' }) %>
+                            </div>
+                            <div class="page-container flex flex-col h-full bg-lightbg p-5 flex-grow"
+                                style="display: none;" id="tasks-screen">
+                                <%- include(`./owner/tasks.ejs`) %>
+                            </div>
+                            <div class="page-container flex flex-col h-full bg-lightbg p-5 flex-grow"
+                                style="display: none;" id="invoice-screen">
+                                <%- include(`./owner/invoice.ejs`) %>
+                            </div>
+                            <div class="page-container flex flex-col h-full bg-lightbg p-5 flex-grow"
+                                style="display: none;" id="garage-add-screen">
+                                <%- include(`./garage/add.ejs`, { formType: 'addGarage' }) %>
+                            </div>
+                            <div class="page-container flex flex-col h-full bg-lightbg p-5 flex-grow"
+                                style="display: none;" id="garage-edit-screen">
+                                <%- include(`./garage/add.ejs`, { formType: 'editGarage' }) %>
+                            </div>
+                    </div>
+            </div>
+            <script>
+
+                updateDetails(["name", "email", "bio", "address", "profile_pic"]);
+                const setActive = (activated) => {
+                    document.getElementById('currentPage').innerHTML = activated.charAt(0).toUpperCase() + activated.substring(1);
+                    switch (activated) {
+                        case "dashboard":
+                            getOwnerData();
+                            break;
+                        case "garages":
+                            fillGarages();
+                            break;
+                        case "services":
+                            loadService('service-container');
+                            break;
+                        case "slots":
+                            getGarages();
+                            populateData();
+                            simpleCalendar();
+                            manipulate();
+                            break;
+                        case 'appointment':
+                            buttons();
+                            loadCalendar();
+                            setTimeout(() => {
+                                document.getElementById("currentDay").click();
+                            }, 500);
+                            break;
+                        case "tasks":
+                            getTaskGarages();
+                            break;
+                        case "invoice":
+                            garagesList();
+                            break;
+                        case "tasks":
+                            getTaskGarages();
+                            break;
+                        default:
+                            break;
+                    }
+                    document.title = activated.charAt(0).toUpperCase() + activated.slice(1);
+                    document.querySelectorAll('#sidebar li').forEach(li => { li.classList.remove('bg-blue'); li.classList.add('opacity-50') });
+                    if (activated != 'profile-edit') {
+                        let active = document.querySelector(`.menus ul li[id=${activated}]`);
+                        active.classList.add('bg-blue');
+                        active.classList.remove('opacity-50');
+                    }
+                    document.querySelectorAll('.page-container').forEach(page => page.style.display = "none")
+                    let screen = document.querySelector(`#${activated}-screen`);
+                    screen.style.display = 'flex'
+                }
+                const activeSub = (activated) => {
+                    if (activated == 'profile-edit') myFetch();
+                    document.querySelectorAll('.page-container').forEach(page => page.style.display = "none");
+                    let screen = document.querySelector(`#${activated}-screen`);
+                    screen.style.display = 'flex';
+                    activated = activated.replace('-', '/');
+                }
+                setActive('<%= active %>');
+                document.querySelectorAll('#sidebar li').forEach(li => {
+                    li.addEventListener('click', () => {
+                        if (li.id == 'logout') {
+                            Swal.fire({
+                                title: "Are you sure?",
+                                text: "really you want to logout..",
+                                showDenyButton: true,
+                                showCancelButton: false,
+                                confirmButtonText: "Yes",
+                                denyButtonText: `No`,
+                                icon: "question"
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.href = "/logout"
+                                }
+                            });
+                            return
+                        }
+                        setActive(li.id)
+                        history.pushState(null, null, li.id == "dashboard" ? "home" : li.id)
+                    })
+                });
+
+            </script>
+            <%- include('./partials/foot') %>

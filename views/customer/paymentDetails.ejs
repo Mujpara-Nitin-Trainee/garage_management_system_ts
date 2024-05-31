@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment</title>
+  <link href=" https://cdn.jsdelivr.net/npm/sweetalert2@11.10.7/dist/sweetalert2.min.css " rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            dark: "#152533",
+            lightBlue: "#D9D9D9",
+            blue: "#355364",
+            white: "#FFFFFF",
+            light: "#D9D9D9",
+            lightbg: "#d7e0e7",
+            lightorange: "burlywood",
+            card1bg: "rgba(255, 225, 200, 0.5)",
+            card1text: "#e96a00",
+            card2bg: "rgba(225, 246, 247, 0.5)",
+            card2text: "#34cdd0",
+            card3bg: "rgba(252, 226, 225, 0.5)",
+            card3text: "#df5e5e",
+            card4bg: "rgba(237, 231, 251, 0.5)",
+            card4text: "#9a78ea",
+            red: "#ff0000",
+            green: "#00FF00",
+            black: "#000000",
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    error {
+      color: red;
+      margin-left: 20px;
+    }
+  </style>
+</head>
+
+<body class="bg-lightbg">
+  <div class="mx-auto p-10" id="payment-container">
+    <h1 class="text-center text-dark text-3xl font-bold">Payment Details</h1>
+    <p class="text-center mt-5 text-lg text-dark">
+      Payment of : ₹ <%=finalAmount%> /-
+    </p>
+    <div class="mx-auto mt-10 bg-white rounded-[19px] py-10 px-7">
+      <div class="flex mx-auto justify-center">
+        <label class="text-dark text-lg">Choose a payment type:</label>
+        <select class="rounded-lg ml-2 pl-2 h-[30px] my-auto text-dark w-[250px] text-sm bg-lightbg" id="payment-type"
+          onchange="changePayment()" name="paymentType">
+          <option value="card">Debit Card/Credit Card</option>
+          <option value="upi">UPI</option>
+          <option value="net banking">Net Banking</option>
+          <option value="cash">Cash</option>
+        </select>
+      </div>
+      <div class="flex mx-auto justify-center mt-5" id="bank-section">
+        <label class="text-dark text-lg">Choose your bank: </label>
+        <select class="rounded-lg ml-[52px] pl-2 h-[30px] my-auto text-dark w-[250px] text-sm bg-lightbg"
+          name="bankName">
+          <option value="sbi">SBI Bank</option>
+          <option value="hdfc">HDFC Bank</option>
+          <option value="bob">Bank of Baroda</option>
+          <option value="icici">ICICI Bank</option>
+          <option value="axis">Axis Bank</option>
+        </select>
+      </div>
+      <div class="bg-dark h-[1px] w-[700px] mx-auto mt-10" id="payment-line"></div>
+      <div class="mt-5" id="card-section">
+        <h2 class="text-center text-2xl text-dark">Card Details</h2>
+        <div class="flex justify-center mt-5">
+          <label class="text-dark text-lg">Card Number: </label>
+          <input class="ml-[72px] rounded h-[30px] bg-lightbg placeholder:text-dark placeholder:opacity-70 px-2"
+            name="cardNumber" id="cardNumber" type="text" placeholder="Enter card number" Validation="require bank_card" oninput="Validation.isValid(this)" />
+        </div>
+        <div class="flex justify-center mt-5">
+          <label class="text-dark text-lg">Account holder name: </label>
+          <input class="ml-2 rounded h-[30px] bg-lightbg placeholder:text-dark placeholder:opacity-70 px-2"
+            name="accountHolder" id="accountHolder" type="text" placeholder="Enter card holder name" Validation="require alpha" oninput="Validation.isValid(this)" />
+        </div>
+        <div class="flex justify-center">
+          <div class="flex justify-center mt-5">
+            <label class="text-dark text-lg">CVV: </label>
+            <input
+              class="ml-2 rounded h-[30px] w-[50px] bg-lightbg placeholder:text-2xl placeholder:text-dark placeholder:opacity-60 px-2"
+              name="cvv" id="cvv" type="text" maxlength="3" placeholder="- - -" Validation="require digit3" oninput="Validation.isValid(this)" />
+          </div>
+          <div class="flex justify-center mt-5 ml-[85px]">
+            <label class="text-dark text-lg">Expiry Date: </label>
+            <input
+              class="ml-[35px] rounded h-[30px] w-[100px] bg-lightbg placeholder:text-dark placeholder:opacity-60 px-2"
+              name="expiryDate" id="expiryDate" type="text" placeholder="MM-YYYY" Validation="require card_year" oninput="Validation.isValid(this)" />
+          </div>
+        </div>
+      </div>
+      <div class="mt-5 hidden" id="upi-section">
+        <h2 class="text-center text-2xl text-dark">UPI Details</h2>
+        <div class="flex justify-center mt-5">
+          <label class="text-dark text-lg">UPI Id: </label>
+          <input class="ml-2 rounded h-[30px] bg-lightbg placeholder:text-dark placeholder:opacity-70 px-2" name="upi" id="upi"
+            type="text" placeholder="Enter your UPI id" Validation="require" oninput="Validation.isValid(this)" />
+        </div>
+      </div>
+      <div class="mt-10">
+        <p class="text-center text-white mx-auto pt-[13px] rounded bg-dark w-[120px] h-[50px] hover:cursor-pointer"
+          onclick="addPayment(`<%=finalAmount%>`)">
+          Pay Now
+        </p>
+      </div>
+    </div>
+    <script src=" https://cdn.jsdelivr.net/npm/sweetalert2@11.10.7/dist/sweetalert2.all.min.js "></script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="/scripts/payment.js"></script>
+    <script src="/scripts/appointments.js"></script>
+    <script src="/scripts/validation.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<%- include('../partials/head.ejs') %>
+  <link rel="stylesheet" href="/styles/auth.css">
+  <script src="/scripts/validation.js"></script>
+</head>
+
+  <body>
+    <toast></toast>
+    <div class="section">
+      <div class="container">
+        <div class="logo">
+          <img src="/assets/logo.png" alt="logo page">
+        </div>
+        <p class="projectTitle">Garage Management System</p>
+        <div class="imgContainer">
+          <input type="radio" name="role_id" id="customer" value="0" checked>
+          <label for="customer"><img src="/icons/vehicle.svg" alt="car image">
+            <p>customer</p>
+          </label>
+          <input type="radio" name="role_id" id="owner" value="1">
+          <label for="owner"><img src="/icons/owner.svg" alt="owner image">
+            <p>owner</p>
+          </label>
+        </div>
+        <form method="post" id="register">
+          <div class="formContainer">
+            <div class="pageInputs">
+              <div class="pageIcons">
+                <img src="/icons/profile2.svg" alt="l" class="icons">
+              </div>
+
+              <input type="text" name="name" id="name" placeholder="your name" tabindex="1" validation="require alpha"
+                oninput="Validation.isValid(this)">
+
+            </div>
+            <div class="formContainer">
+              <div class="pageInputs">
+                <div class="pageIcons">
+                  <img src="/icons/mail.svg" alt="l" class="icons">
+                </div>
+                <input type="text" name="email" id="email" placeholder="abc@pqr.xyz" tabindex="2"
+                  validation="require email" oninput="Validation.isValid(this)">
+              </div>
+              <div class="pageInputs">
+                <div class="pageIcons">
+                  <img src="/icons/lock.svg" alt="l" class="icons">
+                </div>
+
+                <input type="password" name="password" id="password" placeholder="* * * * * * * *" tabindex="3"
+                  validation="require length8" oninput="Validation.isValid(this)">
+
+              </div>
+
+              <div class="pageInputs">
+                <div class="pageIcons">
+                  <img src="/icons/lock.svg" alt="l" class="icons">
+                </div>
+
+                <input type="password" name="conformPassword" id="conformPassword" placeholder="* * * * * * * *"
+                  tabindex="4" validation="require length8 match" oninput="Validation.isValid(this)">
+
+              </div>
+              <div class="btn-container">
+                <input type="button" class="registerButton" style="cursor: pointer;"  id="registerButton" value="REGISTER" tabindex="5"
+                  onclick="Validation.validateAll('register','u/register')">
+              </div>
+              <div class="createAccount">
+                already have account ? <a id="registerLogin" href="/u/signIn" tabindex="6">login</a>
+              </div>
+        </form>
+        <div id="activate">
+
+        </div>
+      </div>
+    </div>
+    <script src="/scripts/toast.js"></script>
+    <%- include('../partials/foot.ejs') %>
